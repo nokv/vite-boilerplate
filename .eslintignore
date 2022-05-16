@@ -1,0 +1,6 @@
+/dist/
+**/node_modules/**
+/.eslintrc.js
+/stylelint.config.js
+/postcss.config.js
+/vite.config.ts
