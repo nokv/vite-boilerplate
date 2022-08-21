@@ -64,14 +64,26 @@
     }
 }
 
-@mixin mq-less-than-base-pc {
+@mixin mq-less-than-base-desktop {
     @media all and (max-width: (var.$base-size-desktop * 1px)) {
+        @content;
+    }
+}
+
+@mixin mq-more-than-base-desktop {
+    @media all and (min-width: ((var.$base-size-desktop + 1) * 1px)) {
         @content;
     }
 }
 
 @mixin mq-less-than-base-mobile {
     @media all and (max-width: (var.$base-size-mobile * 1px)) {
+        @content;
+    }
+}
+
+@mixin mq-more-than-base-mobile {
+    @media all and (min-width: ((var.$base-size-mobile + 1) * 1px)) {
         @content;
     }
 }

@@ -59,8 +59,8 @@ img {
     user-select: none;
 }
 
-ul[class],
-ol[class] {
+ul:where([class]),
+ol:where([class]) {
     list-style: none;
 }
 
