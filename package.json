@@ -22,9 +22,13 @@
     "fix:prettier": "prettier -w .",
     "fix:style": "yarn lint:style --fix"
   },
+  "browserslist": [
+    "defaults"
+  ],
   "engines": {
     "node": "16"
   },
+  "dependencies": {},
   "devDependencies": {
     "@types/node": "16.11.51",
     "@typescript-eslint/eslint-plugin": "5.33.1",
