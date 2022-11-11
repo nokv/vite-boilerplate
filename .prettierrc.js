@@ -4,6 +4,7 @@ const config = {
     singleQuote: true,
     tabWidth: 4,
     useTabs: false,
+    singleAttributePerLine: true,
     overrides: [
         {
             files: ['*.{json,yml,yaml}'],
