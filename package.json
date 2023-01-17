@@ -30,7 +30,7 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@types/node": "16.11.68",
+    "@types/node": "16.18.11",
     "@typescript-eslint/eslint-plugin": "5.40.1",
     "@typescript-eslint/parser": "5.40.1",
     "cross-env": "7.0.3",
@@ -42,14 +42,14 @@
     "postcss-preset-env": "7.8.3",
     "prettier": "2.7.1",
     "ress": "5.0.2",
-    "sass": "1.55.0",
+    "sass": "1.57.1",
     "stylelint": "14.13.0",
     "stylelint-config-prettier": "9.0.4",
     "stylelint-config-standard": "28.0.0",
     "stylelint-config-standard-scss": "5.0.0",
     "stylelint-scss": "4.3.0",
     "typescript": "4.8.4",
-    "vite": "3.1.8",
+    "vite": "3.2.5",
     "vite-plugin-html": "3.2.0"
   }
 }
