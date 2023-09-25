@@ -10,79 +10,47 @@ on:
 
 jobs:
   lint:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎
         uses: actions/checkout@master
-
       - name: Setup node env 🏗
+        id: setup_nodejs
         uses: actions/setup-node@v3.6.0
         with:
-          node-version-file: '.nvmrc'
-          cache: 'yarn'
-
-      - name: Get yarn cache directory path 🛠
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
+          node-version-file: '.tool-versions'
       - name: Cache node_modules 📦
         uses: actions/cache@v3
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        id: cache
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ steps.setup_nodejs.outputs.node-version }}-npm-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies 👨🏻‍💻
-        run: yarn
-
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci
+        shell: bash
       - name: Run linter 👀
-        run: yarn lint
+        run: npm run lint
 
-        env:
-          CI: true
-
-  webpack:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-
+  build:
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎
         uses: actions/checkout@master
-
       - name: Setup node env 🏗
+        id: setup_nodejs
         uses: actions/setup-node@v3.6.0
         with:
-          node-version-file: '.nvmrc'
-          cache: 'yarn'
-
-      - name: Get yarn cache directory path 🛠
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-
+          node-version-file: '.tool-versions'
       - name: Cache node_modules 📦
         uses: actions/cache@v3
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        id: cache
         with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ steps.setup_nodejs.outputs.node-version }}-npm-${{ hashFiles('**/package-lock.json') }}
       - name: Install dependencies 👨🏻‍💻
-        run: yarn
-
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci
+        shell: bash
       - name: Run build 👀
-        run: yarn build
-
-        env:
-          CI: true
+        run: npm run build
