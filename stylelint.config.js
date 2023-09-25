@@ -1,15 +1,15 @@
 /** @type {import('stylelint').Config} */
 const config = {
+  customSyntax: 'postcss-scss',
   extends: [
-    'stylelint-config-standard',
+    'stylelint-config-recommended',
     'stylelint-config-standard-scss',
-    'stylelint-config-prettier',
+    'stylelint-config-recess-order',
   ],
-  plugins: ['stylelint-scss'],
+  plugins: ['stylelint-declaration-block-no-ignored-properties'],
   // https://stylelint.io/user-guide/configuration
   rules: {
     'at-rule-no-unknown': null,
-    'scss/at-rule-no-unknown': true,
     'no-invalid-position-at-import-rule': null,
     'media-feature-name-no-vendor-prefix': null,
     'value-keyword-case': [
@@ -17,6 +17,13 @@ const config = {
       {
         camelCaseSvgKeywords: true,
       },
+    ],
+    'plugin/declaration-block-no-ignored-properties': true,
+    'function-no-unknown': null,
+    'scss/operator-no-newline-after': null,
+    'declaration-block-no-redundant-longhand-properties': [
+      true,
+      { ignoreShorthands: ['grid-template'] },
     ],
   },
 };

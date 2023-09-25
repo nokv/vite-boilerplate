@@ -20,7 +20,12 @@ const config = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint', 'import'],
+  plugins: [
+    '@typescript-eslint',
+    'unused-imports',
+    'import',
+    'simple-import-sort',
+  ],
   rules: {
     quotes: ['error', 'single'],
     'no-unused-vars': 'warn',
@@ -29,6 +34,16 @@ const config = {
     'import/no-unresolved': 'off',
   },
   overrides: [
+    {
+      files: ['*.ts', '*.js'],
+      rules: {
+        'no-console': 'error',
+        'object-shorthand': ['error', 'always'],
+        'simple-import-sort/imports': 'error',
+        'simple-import-sort/exports': 'error',
+        'unused-imports/no-unused-imports': 'error',
+      },
+    },
     {
       files: ['*.js'],
       rules: {
