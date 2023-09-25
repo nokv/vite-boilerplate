@@ -1,8 +1,8 @@
 @function get-vw($size, $viewport: var(--base-size)) {
-    $rate: (100 / $viewport);
-    @return calc(#{$rate} * #{$size} * 1vw);
+  $rate: (100 / $viewport);
+  @return calc(#{$rate} * #{$size} * 1vw);
 }
 
 @function get-per($size, $parent: var(--base-size)) {
-    @return calc(#{$size} / #{$parent} * 100%);
+  @return calc(#{$size} / #{$parent} * 100%);
 }
